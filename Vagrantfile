@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
         ]
       end
 
-      # Install python since minimal would not have it
+      # Install python since minimal xenial64 (stripped down ubuntu 16.04) would not have it and ansible would need it
       config.vm.provision :shell, :inline => <<-SCRIPT
         apt-get update
         apt-get -y install python

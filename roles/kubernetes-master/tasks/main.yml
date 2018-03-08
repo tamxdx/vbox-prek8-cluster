@@ -1,5 +1,11 @@
 ---
 
+# I commented all of this out because 
+# 1) we are going to manually call kubeadm ourselves and 
+# 2) Kubernetes 1.9.3 fixes a lot of issues
+# 3) I'm going to roll with calico instead.
+# But I'm leaving it in just in case I need to reuse in the future.
+
 # Here we initialise the cluster with Kubeadm. We add the token manually so that we
 # know its value when we initialise our nodes. We add --api-advertise-addresses manually
 # because by default Kubeadm would choose the nat IP we get from Virtualbox, which is not good.

@@ -1,5 +1,9 @@
 ---
 
+# I commented all of this out because 
+# we are going to manually call kubeadm ourselves
+# But I'm leaving it in just in case I need to reuse in the future.
+
 #- name:      Join Kubernetes Cluster
 #  become:    true
 #  shell:     kubeadm join --token={{ kubeadm_token }} {{ kubernetes_master_ip }}
