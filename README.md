@@ -84,7 +84,7 @@ We can get shell into the the virtualbox vm's like this. The default password is
 
  	$ ssh vagrant@172.16.66.2 
 
-Set it up to be the master.
+While on the master, set it up to be the master.
 
 	$ sudo kubeadm init --apiserver-advertise-address 172.16.66.2 --pod-network-cidr 10.244.0.0/16
 
