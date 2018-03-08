@@ -70,3 +70,22 @@ General Instructions:
 
 	$ vagrant up
 	$ sh ./ansible.sh
+
+
+We can get shell into the the virtualbox vm's like this. The default password is vagrant. Ssh into the master.
+
+	$ vagrant ssh kubernetes-master
+
+ or 
+
+	$ ssh vagrant@127.0.0.1 -p 2222
+
+ or 
+
+ 	$ ssh vagrant@172.16.66.2 
+
+Set it up to be the master.
+
+	$ sudo kubeadm init --apiserver-advertise-address 172.16.66.2 --pod-network-cidr 10.244.0.0/16
+
+Read what it outputs. Have fun.	
