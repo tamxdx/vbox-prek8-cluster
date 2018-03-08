@@ -1,0 +1,35 @@
+#kubectl run echoserver --image=gcr.io/google_containers/echoserver:1.4 --port=8080 --replicas=1
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: echo-app
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: echo-app
+    spec:
+      containers:
+      - name: echo-app
+        image: gcr.io/google_containers/echoserver:1.4
+        env:
+        - name: AUTHOR
+          value: tamxdx
+        ports:
+        - containerPort: 8080
+---
+#expose echoapp on port 30080
+apiVersion: v1
+kind: Service
+metadata:
+  name: echo-svc
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      nodePort: 30080
+      protocol: TCP
+      name: http
+  selector:
+    app: echo-app       
