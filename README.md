@@ -88,4 +88,38 @@ While on the master, set it up to be the master.
 
 	$ sudo kubeadm init --apiserver-advertise-address 172.16.66.2 --pod-network-cidr 10.244.0.0/16
 
-Read what it outputs. Have fun.	
+Read what it outputs. It will tell you what to execute on the worker nodes to joing the cluster. 
+It should be something like this (copy and save it somewhere):
+
+	$ sudo kubeadm join --token bf9204.0d7ee0c3def3dd82 172.16.66.2:6443 --discovery-token-ca-cert-hash sha256:565f10974e9a70cbc3b2384f35fb3d25c7352c385e8d54e2a188a73aab1a3779
+
+But before you do that on your worker nodes... there's 2 things to do on the master that will make your life easier.
+The first is to give kubectl user permissions: 
+
+	$ mkdir -p $HOME/.kube; sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config; sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+And the second is to..
+
+	$ cat ~/.kube/config
+
+Copy the contents into your clipboard. EXIT out of ssh - out of the master. In your console of your home directory of your machine... 
+
+	$ mkdir ~/.kube; touch ~/.kube/config
+
+Open ~/.kube/config file and paste and save.	
+
+Now go and get the kubectl binary for your operating system. 
+
+https://kubernetes.io/docs/tasks/tools/install-kubectl/
+
+So for example, on OSX....
+
+	$ brew install kubectl
+
+So what does this do? This allows you to exectue kubectl commands not having to be shelled into your kubernetes master VM. 
+
+	$ kubectl get nodes
+
+Should return your nodes of your cluster and their status.
+
+	
