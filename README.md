@@ -89,7 +89,7 @@ While on the master, set it up to be the master.
 	$ sudo kubeadm init --apiserver-advertise-address 172.16.66.2 --pod-network-cidr 10.244.0.0/16
 
 Read what it outputs. It will tell you what to execute on the worker nodes to joing the cluster. 
-It should be something like this (copy and save it somewhere):
+It should be something like this (absolutely copy and paste it to save it somewhere):
 
 	$ sudo kubeadm join --token bf9204.0d7ee0c3def3dd82 172.16.66.2:6443 --discovery-token-ca-cert-hash sha256:565f10974e9a70cbc3b2384f35fb3d25c7352c385e8d54e2a188a73aab1a3779
 
@@ -98,15 +98,10 @@ The first is to give kubectl user permissions:
 
 	$ mkdir -p $HOME/.kube; sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config; sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-And the second is to..
+And the second is to EXIT out of ssh - out of the master. In your console of your home directory of your machine... 
+Use the password vagrant when prompted:
 
-	$ cat ~/.kube/config
-
-Copy the contents into your clipboard. EXIT out of ssh - out of the master. In your console of your home directory of your machine... 
-
-	$ mkdir ~/.kube; touch ~/.kube/config
-
-Open ~/.kube/config file and paste and save.	
+	$ mkdir ~/.kube; $ scp vagrant@172.16.66.2:~/.kube/config ~/.kube/config
 
 Now go and get the kubectl binary for your operating system. 
 

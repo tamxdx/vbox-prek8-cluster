@@ -10,10 +10,10 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: appsvc1
+          serviceName: app1-svc
           servicePort: 80
         path: /app1
       - backend:
-          serviceName: appsvc2
+          serviceName: app2-svc
           servicePort: 80
         path: /app2
