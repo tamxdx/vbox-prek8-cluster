@@ -1,0 +1,70 @@
+---
+
+- name:           Add APT Key for Kubernetes
+  become:         true
+  apt_key:
+    url:          "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
+    state:        "present"
+
+- name:           Add Repo
+  become:         true
+  apt_repository:
+    repo:         "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+    state:        "present"
+
+- name:           Apt Get Update
+  become:         true
+  apt:
+    update_cache: "yes"
+
+- name:           Install packages
+  become:         true
+  apt:
+    name:         "{{ item }}"
+    state:        "present"
+  with_items:
+    - jq
+    - docker.io
+    - kubelet
+    - kubeadm
+    - kubectl
+    - kubernetes-cni
+
+# - name:      Overide Kubelet service config to add IP Address
+#   become:    true
+#   template:
+#     src:     "10-kubeadm.conf"
+#     dest:    "/etc/systemd/system/kubelet.service.d/10-kubeadm.conf"
+#   notify:
+#     - reload systemd
+
+# This task disables swap for Kubernetes node (see https://github.com/kubernetes/kubernetes/pull/31996)
+# - name: Remove swapfile from /etc/fstab
+#   become: true
+#   mount:
+#     name: swap
+#     fstype: swap
+#     state: absent
+
+- name: Disable swap
+  become: true
+  command: swapoff -a
+  when: ansible_swaptotal_mb > 0
+
+- name: Comment out swap line in /etc/fstab
+  become:  true
+  shell:   sed -i '/ swap / s/^/#/' /etc/fstab
+
+- name:    Explicitly add node-ip to 10-kubeadm.conf 
+  become:  true
+  shell:   sed -i -e '${s/$/ --node-ip={{ inventory_hostname }}/}' /etc/systemd/system/kubelet.service.d/10-kubeadm.conf 
+    
+- name:    Reload daemons
+  become:  true
+  shell:   systemctl daemon-reload
+
+- name:    Restart kubelet service
+  become:  true
+  shell:   systemctl restart kubelet 
+
+- meta: flush_handlers
