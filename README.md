@@ -1,5 +1,5 @@
 # vbox-prek8-cluster
-Spools up 3 virtualbox vm's with kubernete packages installed but not initialized
+spools up 3 virtualbox vm's for a kubernetes cluster
 
 ## Purpose:
 
