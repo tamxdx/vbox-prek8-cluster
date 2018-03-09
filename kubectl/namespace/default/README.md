@@ -1,6 +1,6 @@
 # vbox-prek8-cluster
 
-###Next steps:
+## Next steps:
 
 I have included a lot of the dirty work here in the form of yaml files which you apply using kubectl.
 
@@ -35,14 +35,14 @@ $ kubectl proxy
 And you should be able to bring up http://127.0.0.1:8001/ui
 
 
-###More:
+## More:
 
 To execute all of the above in one step, I've included run.sh. Execute it. If you have kubectl proxy running, check http://127.0.0.1:8001/ui to see when the containers have been created or...
 
 	$ kubectl get all --all-namespaces -o wide
 
 
-###Demo Calico policy:
+## Demo Calico policy:
 
 	$ kubectl run busybox --rm -ti --image=busybox /bin/sh
 
