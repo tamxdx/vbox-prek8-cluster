@@ -33,3 +33,38 @@ fire up kubectl proxy
 $ kubectl proxy
 
 And you should be able to bring up http://127.0.0.1:8001/ui
+
+
+More:
+
+To execute all of the above in one step, I've included run.sh. Execute it. If you have kubectl proxy running, check http://127.0.0.1:8001/ui to see when the containers have been created or...
+
+	$ kubectl get all --all-namespaces -o wide
+
+
+Demo Calico policy:
+
+	$ kubectl run busybox --rm -ti --image=busybox /bin/sh
+
+	# wget -O - http://echo-svc.default.svc.cluster.local:8080
+
+This should return you stuff. We are accessing the echo app from another kubernetes pod.
+Now lets limit access from other pods by use of a label.
+
+$ kubectl create -f echoserver-policy.yaml 
+
+Now when you do the same...
+
+	$ kubectl run busybox --rm -ti --image=busybox /bin/sh
+
+	# wget -O - http://echo-svc.default.svc.cluster.local:8080
+
+It will timeout.
+
+Now lets use the label.
+
+	$ kubectl run busybox --rm -ti --labels="access=true" --image=busybox /bin/sh
+
+	# wget -O - http://echo-svc.default.svc.cluster.local:8080
+
+And it works again. 
