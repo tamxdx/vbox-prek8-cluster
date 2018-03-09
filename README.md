@@ -117,4 +117,6 @@ So what does this do? This allows you to exectue kubectl commands not having to 
 
 Should return your nodes of your cluster and their status.
 
-	
+## Next steps
+
+* https://github.com/tamxdx/vbox-prek8-cluster/tree/master/kubectl/namespace/default
