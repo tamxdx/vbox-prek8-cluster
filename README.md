@@ -66,7 +66,7 @@ and uncomment
 
 	host_key_checking = False
 
-General Instructions:
+## General Instructions:
 
 	$ vagrant up
 	$ sh ./ansible.sh
