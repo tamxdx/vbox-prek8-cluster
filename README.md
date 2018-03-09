@@ -1,18 +1,18 @@
 # vbox-prek8-cluster
 Spools up 3 virtualbox vm's with kubernete packages installed but not initialized
 
-Purpose:
+## Purpose:
 
 To create a kubernetes sandbox so we can quickly test things and/or change components
 
-Requirements:
+## Requirements:
 
 VirtualBox, Vagrant, Ansible on Linux or OSX. If you're using windows.. good luck.
 
-https://www.virtualbox.org/wiki/Downloads
-https://www.vagrantup.com/downloads.html
+* https://www.virtualbox.org/wiki/Downloads
+* https://www.vagrantup.com/downloads.html
 
-Notes for linux:
+## Notes for linux:
 
 while you could install whats is currently in the repo, they are out of date. Just download virtualbox and vagrant latest from the sites listed above.
 
@@ -30,7 +30,7 @@ and uncomment
 
 	host_key_checking = False
 
-Notes for OSX:
+## Notes for OSX:
 
 Download and install virtualbox and vagrant latest from the sites listed above.
 
@@ -105,7 +105,7 @@ Use the password vagrant when prompted:
 
 Now go and get the kubectl binary for your operating system. 
 
-https://kubernetes.io/docs/tasks/tools/install-kubectl/
+* https://kubernetes.io/docs/tasks/tools/install-kubectl/
 
 So for example, on OSX....
 
