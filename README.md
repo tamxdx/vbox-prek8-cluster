@@ -34,7 +34,7 @@ and uncomment
 
 Download and install virtualbox and vagrant latest from the sites listed above.
 
-While there are alternative ways to install ansible, lets go with the easiest and use homebrew.
+While there are alternative ways to install ansible, lets go with the easiest and use homebrew which is installed via:
 
 	$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
