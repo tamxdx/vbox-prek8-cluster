@@ -18,7 +18,7 @@ When it's all settled down.. let's try to deploy a simple echoserver app.
 
 $ kubectl create -f echoserver.yaml
 
-It will available at http://172.16.66.4:30080/ and http://172.16.66.3:30080/ since we only specified 2 replicas in echoserver.yaml and we have 2 worker nodes.
+It will available at http://172.16.66.4:30080/ and http://172.16.66.3:30080/ since we specified 2 replicas in echoserver.yaml and we have 2 worker nodes.
 
 Secondly let's get that kubernetes dashboard working.
 
